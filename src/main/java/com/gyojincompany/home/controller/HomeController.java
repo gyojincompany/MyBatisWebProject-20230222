@@ -24,6 +24,12 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/index")
+	public String index2() {
+		
+		return "index";
+	}
+	
 	@RequestMapping(value = "/join")
 	public String join() {
 		
@@ -92,6 +98,18 @@ public class HomeController {
 		model.addAttribute("memberDto", memberDto);
 		
 		return "memberInfo";
+	}
+	
+	@RequestMapping(value = "/memberDelete")
+	public String memberDelete(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		String sessionId = (String) session.getAttribute("sessionid");//현재 로그인한 회원의 아이디
+		
+		Mapper dao = sqlSession.getMapper(Mapper.class);
+		dao.memberDelete(sessionId);//회원정보삭제->회원탈퇴
+		
+		return "redirect:index";
 	}
 
 }

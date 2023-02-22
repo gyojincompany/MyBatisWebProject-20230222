@@ -20,6 +20,9 @@
 		SELECT * FROM batis_member WHERE mid=#{param1}
 	</select>
 	
-	
+	<!-- 특정 아이디의 회원 정보 삭제 SQL -->
+	<delete id="memberDelete">
+		DELETE FROM batis_member WHERE mid=#{param1}
+	</delete>
 	
 </mapper>	
