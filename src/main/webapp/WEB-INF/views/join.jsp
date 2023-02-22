@@ -15,6 +15,7 @@
 		이름 : <input type="text" name="mname"> <br><br>
 		이메일 : <input type="text" name="memail"> <br><br>
 		<input type="submit" value="회원가입">
+		<input type="button" value="로그인" onclick="javascript:window.location='login'">
 	</form>
 </body>
 </html>

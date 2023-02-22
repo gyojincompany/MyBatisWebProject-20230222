@@ -16,6 +16,12 @@ public class HomeController {
 	@Autowired//의존주입(DI)
 	private SqlSession sqlSession;
 	
+	@RequestMapping(value = "/")
+	public String index() {
+		
+		return "index";
+	}
+	
 	@RequestMapping(value = "/join")
 	public String join() {
 		
@@ -35,6 +41,12 @@ public class HomeController {
 		model.addAttribute("mname", mname);
 		
 		return "joinOk";
+	}
+	
+	@RequestMapping(value = "/login")
+	public String login() {
+		
+		return "login";
 	}
 
 }
