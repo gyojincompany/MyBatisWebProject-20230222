@@ -1,6 +1,7 @@
 package com.gyojincompany.home.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,29 @@ public class HomeController {
 	public String login() {
 		
 		return "login";
+	}
+	
+	@RequestMapping(value = "/loginOk")
+	public String loginOk(HttpServletRequest request, Model model) {
+		
+		String mid = request.getParameter("mid");
+		String mpw = request.getParameter("mpw");
+		
+		Mapper dao = sqlSession.getMapper(Mapper.class);
+		int loginCheck = dao.loginCheck(mid, mpw);
+		//1이면 아이디와 비밀번호가 모두 일치하는 데이터가 존재->로그인 성공
+		model.addAttribute("loginCheck", loginCheck);		
+		
+		if(loginCheck == 1) {
+			HttpSession session = request.getSession();
+			session.setAttribute("sessionid", mid);
+			session.setAttribute("ValidMem", "yes");
+			model.addAttribute("memberid", mid);
+			
+			return "loginOk";
+		} else {
+			return "redirect:login";
+		}
 	}
 
 }
