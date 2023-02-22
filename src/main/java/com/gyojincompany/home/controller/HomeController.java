@@ -129,8 +129,35 @@ public class HomeController {
 			model.addAttribute("mname", memberDto.getMname());
 		}
 		
-		
 		return "writeForm";
+	}
+	
+	@RequestMapping(value = "/write")
+	public String write(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		String sessionId = (String) session.getAttribute("sessionid");//현재 로그인한 회원의 아이디
+		
+		Mapper dao = sqlSession.getMapper(Mapper.class);
+		
+		String btitle = request.getParameter("btitle");//글제목
+		String bcontent = request.getParameter("bcontent");//글내용
+		String bmid = null;
+		String bmname = null;
+		
+		if(sessionId == null) { //로그인 하지 않은 상태
+			bmid = "GUEST";
+			bmname = "비회원";
+			
+		} else { //로그인 한 상태
+			MemberDto memberDto = dao.memberInfo(sessionId);//현재 로그인한 회원의 모든정보 가져오기
+			bmid = memberDto.getMid();
+			bmname = memberDto.getMname();
+		}
+		
+		
+		
+		return "redirect:list";
 	}
 
 }
