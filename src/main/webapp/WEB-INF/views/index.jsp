@@ -11,7 +11,7 @@
 	<hr>
 	<h2><a href="join">회원 가입</a></h2>
 	<h2><a href="login">회원 로그인</a></h2>
-	<h2><a href="#">게시판 가기</a></h2>
+	<h2><a href="writeForm">게시판 글쓰기</a></h2>
 	
 </body>
 </html>

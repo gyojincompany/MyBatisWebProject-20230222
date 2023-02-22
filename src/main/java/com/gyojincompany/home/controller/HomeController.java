@@ -111,5 +111,26 @@ public class HomeController {
 		
 		return "redirect:index";
 	}
+	
+	@RequestMapping(value = "/writeForm")
+	public String writeForm(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		String sessionId = (String) session.getAttribute("sessionid");//현재 로그인한 회원의 아이디
+		
+		Mapper dao = sqlSession.getMapper(Mapper.class);
+		
+		if(sessionId == null) { //로그인 하지 않은 상태
+			model.addAttribute("mid", "GUEST");
+			model.addAttribute("mname", "비회원");
+		} else { //로그인 한 상태
+			MemberDto memberDto = dao.memberInfo(sessionId);//현재 로그인한 회원의 모든정보 가져오기
+			model.addAttribute("mid", memberDto.getMid());
+			model.addAttribute("mname", memberDto.getMname());
+		}
+		
+		
+		return "writeForm";
+	}
 
 }

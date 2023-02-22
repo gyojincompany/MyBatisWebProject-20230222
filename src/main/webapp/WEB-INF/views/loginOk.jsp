@@ -23,7 +23,7 @@
 	<h2>[${memberid }]님 로그인을 환영합니다!</h2>
 	<a href="logout">로그아웃</a><br>
 	<a href="memberInfo">회원정보 보기</a><br>
-	<a href="memberDelete">회원탈퇴</a>
-	<a href="#">게시판 가기</a>
+	<a href="memberDelete">회원탈퇴</a><br><br>
+	<a href="writeForm">게시판 글쓰기</a>
 </body>
 </html>
