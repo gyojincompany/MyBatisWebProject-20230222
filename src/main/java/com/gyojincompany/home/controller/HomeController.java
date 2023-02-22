@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gyojincompany.home.dao.Mapper;
+import com.gyojincompany.home.dto.MemberDto;
 
 @Controller
 public class HomeController {
@@ -68,6 +69,29 @@ public class HomeController {
 			model.addAttribute("memberid", mid);
 		} 
 		return "loginOk";
+	}
+	
+	@RequestMapping(value = "/logout")
+	public String logout(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		session.invalidate();//로그아웃
+		
+		return "redirect:index";
+	}
+	
+	@RequestMapping(value = "/memberInfo")
+	public String memberInfo(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		String sessionId = (String) session.getAttribute("sessionid");//현재 로그인한 회원의 아이디
+		
+		Mapper dao = sqlSession.getMapper(Mapper.class);
+		MemberDto memberDto = dao.memberInfo(sessionId);
+		
+		model.addAttribute("memberDto", memberDto);
+		
+		return "memberInfo";
 	}
 
 }
