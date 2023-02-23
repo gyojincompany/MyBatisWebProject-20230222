@@ -73,4 +73,13 @@
 						bid=#{param1}
 	</update>
 	
+	<!-- 글 삭제하기 SQL -->
+	<delete id="deleteDao">
+		DELETE FROM
+			batis_board
+				WHERE 
+					bid=#{param1}
+		
+	</delete>
+	
 </mapper>	

@@ -193,6 +193,7 @@ public class HomeController {
 		Mapper dao = sqlSession.getMapper(Mapper.class);
 		
 		String bid = request.getParameter("bid");//사용자가 클릭한 게시글의 번호
+		System.out.println(request.getParameter("bmname"));
 		
 		model.addAttribute("boardDto", dao.contentViewDao(bid));//해당 클릭한 번호의 글 반환
 		
@@ -209,6 +210,18 @@ public class HomeController {
 		String bcontent = request.getParameter("bcontent");
 		
 		dao.modifyDao(bid, btitle, bcontent);
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete(HttpServletRequest request, Model model) {
+		
+		Mapper dao = sqlSession.getMapper(Mapper.class);
+		
+		String bid = request.getParameter("bid");//사용자가 삭제하려는 게시글의 번호
+				
+		dao.deleteDao(bid);
 		
 		return "redirect:list";
 	}
