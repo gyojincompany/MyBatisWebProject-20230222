@@ -22,7 +22,30 @@
 	
 	<!-- 특정 아이디의 회원 정보 삭제 SQL -->
 	<delete id="memberDelete">
-		DELETE FROM batis_member WHERE mid=#{param1}
+		DELETE FROM 
+			batis_member 
+		WHERE 
+			mid=#{param1}
 	</delete>
+	
+	<!-- 게시판 글쓰기 SQL -->
+	<insert id="writeDao">
+		INSERT INTO batis_board
+		(
+			bid
+			, btitle
+			, bcontent
+			, bmid
+			, bmname
+		) 
+		VALUES
+		(	
+			batisboard_seq.nextval
+			, #{param1}
+			, #{param2}
+			, #{param3}
+			, #{param4}
+		)
+	</insert>
 	
 </mapper>	

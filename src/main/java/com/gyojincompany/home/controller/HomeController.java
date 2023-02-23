@@ -155,7 +155,7 @@ public class HomeController {
 			bmname = memberDto.getMname();
 		}
 		
-		
+		dao.writeDao(btitle, bcontent, bmid, bmname);
 		
 		return "redirect:list";
 	}
