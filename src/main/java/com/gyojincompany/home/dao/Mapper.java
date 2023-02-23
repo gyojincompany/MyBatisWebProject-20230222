@@ -1,5 +1,8 @@
 package com.gyojincompany.home.dao;
 
+import java.util.List;
+
+import com.gyojincompany.home.dto.BoardDto;
 import com.gyojincompany.home.dto.MemberDto;
 
 public interface Mapper {
@@ -12,6 +15,6 @@ public interface Mapper {
 	
 	//게시판용
 	public void writeDao(String btitle, String bcontent, String bmid, String bmname);//게시판 글쓰기
-	
+	public List<BoardDto> listDao();//게시판 모든 글목록 가져오기
 	
 }

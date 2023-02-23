@@ -24,8 +24,8 @@
 	<delete id="memberDelete">
 		DELETE FROM 
 			batis_member 
-		WHERE 
-			mid=#{param1}
+			WHERE 
+				mid=#{param1}
 	</delete>
 	
 	<!-- 게시판 글쓰기 SQL -->
@@ -47,5 +47,12 @@
 			, #{param4}
 		)
 	</insert>
+	
+	<!-- 게시판 모든 글목록가져오기 SQL -->
+	<select id="listDao" resultType="com.gyojincompany.home.dto.BoardDto">
+		SELECT *
+			FROM batis_board
+				ORDER BY bid DESC
+	</select>
 	
 </mapper>	
