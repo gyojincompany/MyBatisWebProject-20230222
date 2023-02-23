@@ -62,4 +62,15 @@
 				WHERE bid=#{param1}
 	</select>
 	
+	<!-- 글 수정하기 SQL -->
+	<update id="modifyDao">
+		UPDATE 
+			batis_board 
+				SET 
+				btitle=#{param2}
+				, bcontent=#{param3} 
+					WHERE 
+						bid=#{param1}
+	</update>
+	
 </mapper>	

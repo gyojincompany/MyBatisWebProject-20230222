@@ -17,5 +17,6 @@ public interface Mapper {
 	public void writeDao(String btitle, String bcontent, String bmid, String bmname);//게시판 글쓰기
 	public List<BoardDto> listDao();//게시판 모든 글목록 가져오기
 	public BoardDto contentViewDao(String bid);//리스트에서 사용자가 클릭한 글의 내용 가져오기
+	public void modifyDao(String bid, String btitle, String bcontent);//글 수정
 	
 }

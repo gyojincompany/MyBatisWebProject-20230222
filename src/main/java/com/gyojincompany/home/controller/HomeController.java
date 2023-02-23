@@ -186,4 +186,30 @@ public class HomeController {
 		
 		return "content_view";
 	}
+	
+	@RequestMapping(value = "/modify")
+	public String modify_view(HttpServletRequest request, Model model) {
+		
+		Mapper dao = sqlSession.getMapper(Mapper.class);
+		
+		String bid = request.getParameter("bid");//사용자가 클릭한 게시글의 번호
+		
+		model.addAttribute("boardDto", dao.contentViewDao(bid));//해당 클릭한 번호의 글 반환
+		
+		return "modify_view";
+	}
+	
+	@RequestMapping(value = "/modifyOk")
+	public String modifyOk(HttpServletRequest request, Model model) {
+		
+		Mapper dao = sqlSession.getMapper(Mapper.class);
+		
+		String bid = request.getParameter("bid");//사용자가 클릭한 게시글의 번호
+		String btitle = request.getParameter("btitle");
+		String bcontent = request.getParameter("bcontent");
+		
+		dao.modifyDao(bid, btitle, bcontent);
+		
+		return "redirect:list";
+	}
 }
