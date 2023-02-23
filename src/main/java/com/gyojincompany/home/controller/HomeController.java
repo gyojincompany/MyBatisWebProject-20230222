@@ -174,4 +174,16 @@ public class HomeController {
 		
 		return "list";
 	}
+	
+	@RequestMapping(value = "/contentView")
+	public String content_view(HttpServletRequest request, Model model) {
+		
+		Mapper dao = sqlSession.getMapper(Mapper.class);
+		
+		String bid = request.getParameter("bid");//사용자가 클릭한 게시글의 번호
+		
+		model.addAttribute("boardDto", dao.contentViewDao(bid));//해당 클릭한 번호의 글 반환
+		
+		return "content_view";
+	}
 }

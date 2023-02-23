@@ -10,7 +10,9 @@
 <body>
 	
 	<c:forEach items="${boardDtos }" var="bdto">
+		<a href="contentView?bid=${bdto.bid}">
 		글번호 : ${bdto.bid} / 글제목: ${bdto.btitle } / 글쓴이 : ${bdto.bmname } / 등록일 : ${bdto.bdate }
+		</a>
 		<br> 
 	
 	</c:forEach>
